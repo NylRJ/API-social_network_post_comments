@@ -34,6 +34,14 @@ public class UserService {
 		return repository.insert(obj);
 	}
 	
+	public void delete(String id) {
+			
+		this.findById(id);
+		repository.deleteById(id);
+		
+	}
+	
+	
 	
 	
 	

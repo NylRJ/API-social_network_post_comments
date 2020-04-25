@@ -59,6 +59,9 @@ public class PostService {
 		
 		objPost.setBody(objNewPost.getBody());
 		objPost.setTitle(objNewPost.getTitle());
+		objPost.setDate(objNewPost.getDate());
+		
+		
 		
 		return objPost;
 	}
@@ -67,10 +70,10 @@ public class PostService {
 	
 	
 	
-	public Post fromDTO(PostDTO PostDTO) {
+	public Post fromDTO(PostDTO postDTO) {
 		
 		
-		return new Post(PostDTO.getId(),PostDTO.getDate(),PostDTO.getBody(),PostDTO.getTitle(),PostDTO.getAuthor());
+		return new Post(postDTO.getId(),postDTO.getDate(),postDTO.getBody(),postDTO.getTitle(),postDTO.getAuthor());
 		
 	}
 }

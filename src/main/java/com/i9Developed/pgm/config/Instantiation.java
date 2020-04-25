@@ -9,9 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.i9Developed.pgm.domain.AuthorDTO;
 import com.i9Developed.pgm.domain.Post;
 import com.i9Developed.pgm.domain.User;
+import com.i9Developed.pgm.dto.AuthorDTO;
 import com.i9Developed.pgm.repository.PostRepository;
 import com.i9Developed.pgm.repository.UserRepository;
 

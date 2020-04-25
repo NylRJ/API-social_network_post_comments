@@ -3,6 +3,8 @@ package com.i9Developed.pgm.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.i9Developed.pgm.dto.AuthorDTO;
+
 public class Post implements Serializable {
 
 	private static final long serialVersionUID = 1L;

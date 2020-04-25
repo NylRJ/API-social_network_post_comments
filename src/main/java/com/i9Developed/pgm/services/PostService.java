@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.i9Developed.pgm.domain.Post;
-import com.i9Developed.pgm.dto.PostDTO;
 import com.i9Developed.pgm.repository.PostRepository;
 import com.i9Developed.pgm.services.xception.ObjectNotFoundException;
 
@@ -67,13 +66,13 @@ public class PostService {
 	}
 	
 	
-	
-	
-	
-	public Post fromDTO(PostDTO postDTO) {
-		
-		
-		return new Post(postDTO.getId(),postDTO.getDate(),postDTO.getBody(),postDTO.getTitle(),postDTO.getAuthor());
-		
-	}
+//	
+//	
+//	
+//	public Post fromDTO(PostDTO postDTO) {
+//		
+//		
+//		return new Post(postDTO.getId(),postDTO.getDate(),postDTO.getBody(),postDTO.getTitle(),postDTO.getAuthor());
+//		
+//	}
 }

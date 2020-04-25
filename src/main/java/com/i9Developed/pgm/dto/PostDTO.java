@@ -1,9 +1,12 @@
-package com.i9Developed.pgm.domain;
+package com.i9Developed.pgm.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-public class Post implements Serializable {
+import com.i9Developed.pgm.domain.Post;
+import com.i9Developed.pgm.domain.User;
+
+public class PostDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String id;
@@ -12,16 +15,27 @@ public class Post implements Serializable {
 	private String body;
 	private User author;
 
-	public Post() {
-		super();
+	public PostDTO() {
+		
+	}
+	
+	public PostDTO(Post x) {
+		this();
+		this.id = x.getId();
+		this.date = x.getDate();
+		this.title = x.getTitle();
+		this.body = x.getBody();
+		
 	}
 
-	public Post(String id, Date date, String title, String body,User author) {
-		super();
-		this.id = id;
-		this.date = date;
-		this.title = title;
-		this.body = body;
+	
+	
+	
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 
@@ -56,15 +70,6 @@ public class Post implements Serializable {
 	public void setBody(String body) {
 		this.body = body;
 	}
-	
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
 
 	@Override
 	public int hashCode() {
@@ -82,7 +87,7 @@ public class Post implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Post other = (Post) obj;
+		PostDTO other = (PostDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -91,5 +96,4 @@ public class Post implements Serializable {
 		return true;
 	}
 
-	
 }

@@ -3,6 +3,7 @@ package com.i9Developed.pgm.services;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,12 +42,33 @@ public class UserService {
 		
 	}
 	
+	public User update(String id,User objNewUser) {
+		try {
+		User objUser = this.findById(id);
+		updateData(objUser,objNewUser);
+		return repository.save(objUser);
+	} catch (Exception e) {
+		throw new ObjectNotFoundException( e+" Recurso nao encontrado: "+id);
+	}
+		
+	}
+	
+	
+	
+	
+	private User updateData(User objUser,User objNewUser) {
+		
+		objUser.setName(objNewUser.getName());
+		objUser.setEmail(objNewUser.getEmail());
+		
+		return objUser;
+	}
+	
 	
 	
 	
 	
 	public User fromDTO(UserDTO userDTO) {
-		
 		
 		
 		return new User(userDTO.getId(),userDTO.getname(),userDTO.getEmail());

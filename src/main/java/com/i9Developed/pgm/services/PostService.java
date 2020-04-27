@@ -1,5 +1,6 @@
 package com.i9Developed.pgm.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,15 @@ public class PostService {
 
 		
 		return repository.searchTitle(txt);
+		
+	}
+	
+
+	public List<Post> fullSearch(String txt, Date minDate,Date maxDate) {
+			
+		maxDate = new Date(maxDate.getTime() + 24 * 60 * 60 * 100);
+		  
+		return repository.fullSearchTitle(txt, minDate, maxDate);
 		
 	}
 

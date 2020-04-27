@@ -1,5 +1,6 @@
 package com.i9Developed.pgm.resource;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,19 @@ public class PostResource {
 	
 
 	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> titleSearch(
+			@RequestParam(value = "text", defaultValue = "") String text,
+			@RequestParam(value = "minDate", defaultValue = "") Date minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") Date maxDate) {
+		text = URL.decodeParameter(text);
+		 
+		List<Post> objList = PostService.findByTitle(text);
+
+		return ResponseEntity.ok().body(objList);
+	}
+	
+
+	@RequestMapping(value = "/fullSearch", method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
 		text = URL.decodeParameter(text);
 		 

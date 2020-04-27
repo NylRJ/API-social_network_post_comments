@@ -1,14 +1,14 @@
 package com.i9Developed.pgm.dto;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.Date;
 
 public class CommentDTO implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
-	private String txt;
-	private Instant date;
+	private String text;
+	private Date date;
 	private AuthorDTO author;
 	
 	public CommentDTO() {
@@ -16,26 +16,26 @@ public class CommentDTO implements Serializable{
 		
 	}
 
-	public CommentDTO(String txt, Instant date, AuthorDTO author) {
+	public CommentDTO(String text, Date date, AuthorDTO author) {
 		super();
-		this.txt = txt;
+		this.text = text;
 		this.date = date;
 		this.author = author;
 	}
 
 	public String getTxt() {
-		return txt;
+		return text;
 	}
 
-	public void setTxt(String txt) {
-		this.txt = txt;
+	public void setTxt(String text) {
+		this.text = text;
 	}
 
-	public Instant getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Instant date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

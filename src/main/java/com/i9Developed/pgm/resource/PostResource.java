@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,37 +20,40 @@ import com.i9Developed.pgm.uttil.URL;
 public class PostResource {
 
 	@Autowired
-	private PostService PostService;
+	private PostService postService;
 
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findAll() {
+		List<Post> list = postService.findAll();
 
+		return ResponseEntity.ok().body(list);
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Post> findById( String id) {
-		Post obj = PostService.findById(id);
+	public ResponseEntity<Post> findById(@PathVariable String id) {
+		Post obj = postService.findById(id);
 
 		return ResponseEntity.ok().body(obj);
 	}
-	
-	
 
-	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
-	public ResponseEntity<List<Post>> titleSearch(
-			@RequestParam(value = "text", defaultValue = "") String text,
-			@RequestParam(value = "minDate", defaultValue = "") Date minDate,
-			@RequestParam(value = "maxDate", defaultValue = "") Date maxDate) {
+	@RequestMapping(value = "/fullsearch", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> titleSearch(@RequestParam(value = "text", defaultValue = "") String text,
+			@RequestParam(value = "minDate", defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate) {
+
 		text = URL.decodeParameter(text);
-		 
-		List<Post> objList = PostService.findByTitle(text);
+		Date min = URL.convertDate(minDate, new Date(0L));
+		Date max = URL.convertDate(minDate, new Date());
+		List<Post> objList = postService.fullSearch(text, min, max);
 
 		return ResponseEntity.ok().body(objList);
 	}
-	
 
-	@RequestMapping(value = "/fullSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/titlesearch", method = RequestMethod.GET)
 	public ResponseEntity<List<Post>> findByTitle(@RequestParam(value = "text", defaultValue = "") String text) {
 		text = URL.decodeParameter(text);
-		 
-		List<Post> objList = PostService.findByTitle(text);
+
+		List<Post> objList = postService.findByTitle(text);
 
 		return ResponseEntity.ok().body(objList);
 	}
